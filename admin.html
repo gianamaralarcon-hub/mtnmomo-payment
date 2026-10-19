@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTN MoMo Admin — Register Payment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mtn-yellow:#FFCC00;
+  --mtn-yellow-dark:#F5B500;
+  --mtn-yellow-light:#FFF8D6;
+  --mtn-blue:#0047AB;
+  --mtn-blue-dark:#003380;
+  --mtn-red:#E31B23;
+  --bg-page:#f1f5f9;
+  --text-primary:#1f2937;
+  --text-muted:#6b7280;
+  --border-color:#e2e8f0;
+  --border-input:#cbd5e1;
+  --shadow-sm:0 1px 2px 0 rgba(0,0,0,.05);
+  --shadow-card:0 4px 20px -2px rgba(0,0,0,.06),0 2px 6px -1px rgba(0,0,0,.04);
+  --radius-card:14px;
+  --radius-input:8px;
+  --radius-btn:8px;
+  --font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-family);background:var(--bg-page);color:var(--text-primary);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+.brand-badge{font-size:20px;font-weight:800;letter-spacing:-.5px;display:inline-flex;align-items:center;gap:2px}
+.brand-mtn{color:var(--mtn-blue)}
+.brand-momo{color:#003366}
+.admin-shield-tag{font-size:11px;font-weight:700;background:var(--mtn-yellow-light);color:#003366;padding:3px 8px;border-radius:999px;margin-left:10px;text-transform:uppercase;letter-spacing:.5px;display:inline-flex;align-items:center;gap:4px;border:1px solid var(--mtn-yellow)}
+
+.admin-navbar{background:#fff;border-bottom:1px solid var(--border-color);padding:12px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
+.admin-nav-meta{display:flex;align-items:center;gap:16px}
+.admin-live-indicator{font-size:12px;font-weight:600;color:#059669;display:inline-flex;align-items:center;gap:6px;background:#ecfdf5;padding:4px 10px;border-radius:999px}
+.pulse-dot{width:7px;height:7px;background-color:#10b981;border-radius:50%;box-shadow:0 0 0 0 rgba(16,185,129,.7);animation:pulseGlow 2s infinite}
+@keyframes pulseGlow{0%{transform:scale(.95);box-shadow:0 0 0 0 rgba(16,185,129,.7)}70%{transform:scale(1);box-shadow:0 0 0 6px rgba(16,185,129,0)}100%{transform:scale(.95);box-shadow:0 0 0 0 rgba(16,185,129,0)}}
+.btn-secondary-sm{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;border:1px solid var(--border-color);background:#fff;font-size:13px;font-weight:600;color:#334155;cursor:pointer;transition:all .15s ease}
+.btn-secondary-sm:hover{background:#f8fafc;border-color:#cbd5e1}
+
+.admin-main{padding:28px 24px;max-width:1240px;margin:0 auto;width:100%}
+.admin-container{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+.admin-card{background:#fff;border-radius:var(--radius-card);border:1px solid var(--border-color);box-shadow:var(--shadow-card);padding:24px}
+.admin-card-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid #f1f5f9}
+.header-icon-box{width:44px;height:44px;border-radius:10px;background:var(--mtn-yellow-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.admin-card-title{font-size:19px;font-weight:700;color:#0f172a;line-height:1.3}
+.admin-card-subtitle{font-size:13px;color:var(--text-muted);margin-top:3px}
+
+.form-group{margin-bottom:16px}
+.label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+label{display:block;font-size:13px;font-weight:600;color:#334155;margin-bottom:6px}
+.required{color:var(--mtn-red)}
+.helper-pill{font-size:11px;font-weight:600;color:#003366;background:var(--mtn-yellow-light);padding:2px 7px;border-radius:999px;border:1px solid var(--mtn-yellow)}
+.field-hint{display:block;font-size:12px;color:#64748b;margin-top:5px}
+.styled-input,.styled-select{width:100%;padding:10px 14px;font-size:14px;font-family:inherit;color:#0f172a;background:#fff;border:1px solid var(--border-input);border-radius:var(--radius-input);outline:none;transition:all .15s ease}
+.styled-input:focus,.styled-select:focus{border-color:var(--mtn-blue);box-shadow:0 0 0 3px rgba(0,71,171,.15)}
+.styled-select{cursor:pointer;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:36px;appearance:none;-webkit-appearance:none}
+.uppercase-text{text-transform:uppercase;font-weight:600;letter-spacing:.5px}
+.field-helper-btn{background:none;border:none;color:var(--mtn-blue);font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:2px 4px}
+.field-helper-btn:hover{text-decoration:underline}
+.phone-input-combined{display:flex;border:1px solid var(--border-input);border-radius:var(--radius-input);overflow:hidden;background:#fff;transition:all .15s ease}
+.phone-input-combined:focus-within{border-color:var(--mtn-blue);box-shadow:0 0 0 3px rgba(0,71,171,.15)}
+.country-prefix-addon{display:flex;align-items:center;gap:6px;padding:0 12px;background:var(--mtn-yellow-light);border-right:1px solid var(--mtn-yellow);font-size:13px;font-weight:600;color:#003366;user-select:none}
+.phone-field{border:none !important;border-radius:0 !important;box-shadow:none !important}
+.form-row-2col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn-primary-block{width:100%;background:var(--mtn-blue);color:#fff;border:none;border-radius:var(--radius-btn);padding:13px 20px;font-size:15px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .2s ease;box-shadow:0 4px 12px rgba(0,71,171,.25);margin-top:8px}
+.btn-primary-block:hover{background:var(--mtn-blue-dark);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,71,171,.35)}
+.btn-primary-block:active{transform:translateY(0)}
+
+.admin-column-right{display:flex;flex-direction:column;gap:24px}
+.link-showcase-card{border-top:4px solid var(--mtn-yellow);position:relative}
+.card-status-tag{margin-bottom:12px}
+.status-ready-pill{font-size:11px;font-weight:700;background:#ecfdf5;color:#047857;padding:3px 10px;border-radius:999px;text-transform:uppercase;letter-spacing:.5px}
+.showcase-title{font-size:18px;font-weight:700;color:#0f172a;margin-bottom:6px}
+.showcase-desc{font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:18px}
+.share-link-wrapper{margin-bottom:16px}
+.link-input-group{display:flex;background:#f8fafc;border:1px solid #cbd5e1;border-radius:8px;overflow:hidden;padding:4px}
+.share-url-input{flex:1;border:none;background:transparent;padding:8px 12px;font-size:13px;font-family:monospace;color:#1e293b;outline:none}
+.btn-copy-link{background:var(--mtn-blue);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s ease;white-space:nowrap}
+.btn-copy-link:hover{background:var(--mtn-blue-dark)}
+.showcase-actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.btn-action-outline{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 12px;border:1px solid #cbd5e1;background:#fff;border-radius:6px;font-size:13px;font-weight:600;color:#334155;cursor:pointer;transition:all .15s ease}
+.btn-action-outline:hover{background:#f8fafc;border-color:#94a3b8;color:#0f172a}
+.link-meta-summary{background:#f8fafc;border-radius:8px;padding:14px 16px;display:grid;grid-template-columns:1fr 1fr;gap:12px;border:1px solid #f1f5f9}
+.meta-item{display:flex;flex-direction:column;gap:3px}
+.m-lbl{font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.5px}
+.m-val{font-size:13px;font-weight:600;color:#0f172a}
+.m-val.highlight{color:var(--mtn-blue);font-weight:700}
+.m-val.code{font-family:monospace;background:#e2e8f0;padding:2px 6px;border-radius:4px;display:inline-block;width:fit-content}
+
+.history-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #f1f5f9}
+.history-title{font-size:15px;font-weight:700;color:#0f172a}
+.history-subtitle{font-size:12px;color:var(--text-muted)}
+.btn-clear-text{background:none;border:none;color:#dc2626;font-size:12px;font-weight:600;cursor:pointer;padding:2px 6px}
+.btn-clear-text:hover{text-decoration:underline}
+.admin-history-list{display:flex;flex-direction:column;gap:10px;max-height:380px;overflow-y:auto}
+.history-empty{font-size:13px;color:#94a3b8;text-align:center;padding:24px 12px}
+.history-item-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:8px;background:#f8fafc;border:1px solid #f1f5f9;gap:10px;transition:all .15s ease}
+.history-item-row:hover{background:var(--mtn-yellow-light);border-color:var(--mtn-yellow)}
+.hist-info{flex:1;min-width:0}
+.hist-name{font-size:13px;font-weight:700;color:#0f172a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-code{font-size:11px;font-family:monospace;color:#475569;font-weight:600;background:#e2e8f0;padding:1px 5px;border-radius:3px;margin-left:4px}
+.hist-sub{font-size:11px;color:#64748b;margin-top:2px}
+.hist-amt{font-size:13px;font-weight:700;color:var(--mtn-blue);white-space:nowrap}
+.hist-actions{display:flex;gap:4px}
+.btn-hist-action{background:#fff;border:1px solid #cbd5e1;border-radius:4px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#475569;transition:all .15s ease;font-size:14px}
+.btn-hist-action:hover{background:var(--mtn-blue);border-color:var(--mtn-blue);color:#fff}
+.btn-hist-action.delete:hover{background:#dc2626;border-color:#dc2626;color:#fff}
+
+.toast-notification{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#0f172a;color:#fff;padding:12px 20px;border-radius:8px;font-size:13px;font-weight:600;box-shadow:0 10px 25px rgba(0,0,0,.25);z-index:2000;opacity:0;transition:all .3s cubic-bezier(.16,1,.3,1);pointer-events:none;max-width:90%;text-align:center}
+.toast-notification.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@media (max-width:960px){.admin-container{grid-template-columns:1fr}}
+@media (max-width:640px){
+  .admin-navbar{align-items:flex-start;flex-direction:column;gap:12px;padding:12px 16px}
+  .admin-main{padding:16px 12px 24px}
+  .admin-card{padding:16px;border-radius:8px}
+  .form-row-2col,.showcase-actions-grid,.link-meta-summary{grid-template-columns:1fr}
+  .link-input-group{flex-direction:column;gap:6px}
+  .share-url-input,.btn-copy-link{width:100%}
+  .btn-copy-link{justify-content:center}
+  .history-item-row{align-items:flex-start;flex-direction:column}
+  .hist-info,.hist-amt,.hist-actions{width:100%}
+  .hist-actions{justify-content:flex-end}
+  .styled-input,.styled-select{font-size:16px}
+}
+</style>
+</head>
+<body>
+
+<header class="admin-navbar">
+  <div class="admin-nav-brand">
+    <div class="brand-badge">
+      <span class="brand-mtn">MTN</span><span class="brand-momo">&nbsp;MoMo</span>
+      <span class="admin-shield-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Admin Portal
+      </span>
+    </div>
+  </div>
+  <div class="admin-nav-meta">
+    <span class="admin-live-indicator"><span class="pulse-dot"></span> MTN MoMo Network Active</span>
+    <button type="button" class="btn-secondary-sm" onclick="loadSampleAdminData()">Clear</button>
+  </div>
+</header>
+
+<main class="admin-main">
+  <div class="admin-container">
+
+    <div class="admin-card form-column">
+      <div class="admin-card-header">
+        <div class="header-icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0047AB" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+        </div>
+        <div>
+          <h1 class="admin-card-title">Register Payment</h1>
+          <p class="admin-card-subtitle">Set up client transaction details and generate a shareable payment link.</p>
+        </div>
+      </div>
+
+      <form id="admin-payment-form" onsubmit="handleAdminFormSubmit(event)">
+        <div class="form-group">
+          <div class="label-row">
+            <label for="adminCountrySelect">MoMo Supported Country <span class="required">*</span></label>
+            <span class="helper-pill">MTN MoMo Markets</span>
+          </div>
+          <select id="adminCountrySelect" class="styled-select" onchange="handleAdminCountryChange()" required>
+            <option value="" data-flag="" data-country="" data-currency="" selected></option>
+            <option value="+237" data-flag="🇨🇲" data-country="Cameroon" data-currency="XAF">🇨🇲 Cameroon (+237) — MTN MoMo</option>
+            <option value="+225" data-flag="🇨🇮" data-country="Côte d'Ivoire" data-currency="XOF">🇨🇮 Côte d'Ivoire (+225) — MTN MoMo</option>
+            <option value="+233" data-flag="🇬🇭" data-country="Ghana" data-currency="GHS">🇬🇭 Ghana (+233) — MTN MoMo</option>
+            <option value="+256" data-flag="🇺🇬" data-country="Uganda" data-currency="UGX">🇺🇬 Uganda (+256) — MTN MoMo</option>
+            <option value="+250" data-flag="🇷🇼" data-country="Rwanda" data-currency="RWF">🇷🇼 Rwanda (+250) — MTN MoMo</option>
+            <option value="+27" data-flag="🇿🇦" data-country="South Africa" data-currency="ZAR">🇿🇦 South Africa (+27) — MTN MoMo</option>
+            <option value="+234" data-flag="🇳🇬" data-country="Nigeria" data-currency="NGN">🇳🇬 Nigeria (+234) — MTN MoMo</option>
+            <option value="+260" data-flag="🇿🇲" data-country="Zambia" data-currency="ZMW">🇿🇲 Zambia (+260) — MTN MoMo</option>
+          </select>
+          <span class="field-hint" id="country-hint"></span>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label for="adminTrackingNumber">Tracking Number <span class="required">*</span></label>
+            <button type="button" class="field-helper-btn" onclick="generateAdminTracking()">Auto-Generate</button>
+          </div>
+          <input type="text" id="adminTrackingNumber" placeholder="e.g. JHGFDWQTD" required autocomplete="off" class="styled-input uppercase-text">
+        </div>
+
+        <div class="form-group">
+          <label for="adminModeOfPayment">Mode of Payment <span class="required">*</span></label>
+          <input type="text" id="adminModeOfPayment" placeholder="e.g. Escrow Account" required autocomplete="off" class="styled-input">
+        </div>
+
+        <div class="form-group">
+          <label for="adminAccountName">Recipient / Account Name <span class="required">*</span></label>
+          <input type="text" id="adminAccountName" placeholder="e.g. Jean-Pierre Mbarga" required autocomplete="off" class="styled-input">
+        </div>
+
+        <div class="form-group">
+          <label for="adminAccountNumber">Account / Phone Number <span class="required">*</span></label>
+          <div class="phone-input-combined">
+            <span class="country-prefix-addon"><span id="admin-flag-icon"></span><span id="admin-dial-code"></span></span>
+            <input type="text" id="adminAccountNumber" placeholder="e.g. 679123456" required autocomplete="off" class="styled-input phone-field">
+          </div>
+        </div>
+
+        <div class="form-row-2col">
+          <div class="form-group">
+            <label for="adminAmount">Amount <span class="required">*</span></label>
+            <input type="number" id="adminAmount" step="0.01" min="0.01" placeholder="e.g. 25.00" required class="styled-input">
+          </div>
+          <div class="form-group">
+            <label for="adminCurrency">Currency <span class="required">*</span></label>
+            <input type="text" id="adminCurrency" placeholder="e.g. XAF" required autocomplete="off" class="styled-input uppercase-text">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="adminReceiptOptional">Service / Receipt Note (Optional)</label>
+          <input type="text" id="adminReceiptOptional" placeholder="e.g. Payment Authorization" autocomplete="off" class="styled-input">
+        </div>
+
+        <button type="submit" class="btn-primary-block">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+          <span>Generate &amp; Register Client Link</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="admin-column-right">
+
+      <div class="admin-card link-showcase-card">
+        <div class="card-status-tag"><span class="status-ready-pill">Link Ready to Share</span></div>
+        <h2 class="showcase-title">Client Payment Link</h2>
+        <p class="showcase-desc">Send this private link to the client. The client will only see the MTN MoMo receipt and PIN/SMS/OTP payment interface.</p>
+
+        <div class="share-link-wrapper">
+          <div class="link-input-group">
+            <input type="text" id="admin-share-link-input" readonly class="share-url-input">
+            <button type="button" class="btn-copy-link" onclick="copyAdminGeneratedLink()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span id="copy-btn-label">Copy Link</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="showcase-actions-grid">
+          <button type="button" class="btn-action-outline" onclick="openClientPreviewInNewTab()">Preview Client View</button>
+          <button type="button" class="btn-action-outline" onclick="shareViaWhatsApp()">Share via WhatsApp</button>
+        </div>
+
+        <div class="link-meta-summary">
+          <div class="meta-item"><span class="m-lbl">Target Recipient</span><span class="m-val" id="summary-recipient"></span></div>
+          <div class="meta-item"><span class="m-lbl">Payable Amount</span><span class="m-val highlight" id="summary-amount"></span></div>
+          <div class="meta-item"><span class="m-lbl">Country Market</span><span class="m-val" id="summary-country"></span></div>
+          <div class="meta-item"><span class="m-lbl">Tracking Code</span><span class="m-val code" id="summary-tracking"></span></div>
+        </div>
+      </div>
+
+      <div class="admin-card history-card">
+        <div class="history-header">
+          <div>
+            <h3 class="history-title">Registered Payments History</h3>
+            <span class="history-subtitle">Stored locally in your secure admin console</span>
+          </div>
+          <button type="button" class="btn-clear-text" onclick="clearAdminHistory()">Clear</button>
+        </div>
+        <div id="admin-history-list" class="admin-history-list"></div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<div id="toast" class="toast-notification"></div>
+
+<script>
+const STORAGE_KEY_RECEIPTS = 'mtnmomo_receipts_history';
+const STORAGE_KEY_CURRENT  = 'mtnmomo_current_receipt';
+
+const DEFAULT_SAMPLE_DATA = {
+  trackingNumber:'', modeOfPayment:'', accountName:'', countryCode:'', countryFlag:'',
+  countryName:'', accountNumber:'', amount:'', currency:'', receiptOptional:'',
+  timestamp:'', isAccepted:false, isDeclined:false
+};
+
+let currentReceipt = { ...DEFAULT_SAMPLE_DATA };
+
+function initAdminPage(){
+  const saved = localStorage.getItem(STORAGE_KEY_CURRENT);
+  if(saved){
+    try{ currentReceipt = JSON.parse(saved); }catch(e){ currentReceipt = {...DEFAULT_SAMPLE_DATA}; }
+  }
+  populateAdminForm(currentReceipt);
+  updateGeneratedLinkDisplay(currentReceipt);
+  renderAdminHistory();
+}
+
+function handleAdminCountryChange(){
+  const select = document.getElementById('adminCountrySelect');
+  if(!select) return;
+  const opt = select.options[select.selectedIndex];
+  const dialCode = opt.value || '';
+  const flag = opt.getAttribute('data-flag') || '';
+  const countryName = opt.getAttribute('data-country') || '';
+  const defaultCurr = opt.getAttribute('data-currency') || '';
+  const dialEl = document.getElementById('admin-dial-code');
+  const flagEl = document.getElementById('admin-flag-icon');
+  const hintEl = document.getElementById('country-hint');
+  const currInput = document.getElementById('adminCurrency');
+  if(dialEl) dialEl.textContent = dialCode;
+  if(flagEl) flagEl.textContent = flag;
+  if(hintEl) hintEl.textContent = countryName ? `Selected: ${countryName} MTN MoMo corridor (${dialCode})` : '';
+  if(currInput && !currInput.value) currInput.value = defaultCurr;
+}
+
+function generateAdminTracking(){
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  let result = '';
+  for(let i=0;i<9;i++) result += chars.charAt(Math.floor(Math.random()*chars.length));
+  const input = document.getElementById('adminTrackingNumber');
+  if(input) input.value = result;
+  showToast(`Generated Tracking ID: ${result}`);
+}
+
+function populateAdminForm(data){
+  document.getElementById('adminTrackingNumber').value = data.trackingNumber || '';
+  document.getElementById('adminModeOfPayment').value = data.modeOfPayment || '';
+  document.getElementById('adminAccountName').value = data.accountName || '';
+  const countrySelect = document.getElementById('adminCountrySelect');
+  if(data.countryCode) countrySelect.value = data.countryCode;
+  handleAdminCountryChange();
+  document.getElementById('adminAccountNumber').value = data.accountNumber || '';
+  document.getElementById('adminAmount').value = data.amount || '';
+  document.getElementById('adminCurrency').value = data.currency || '';
+  document.getElementById('adminReceiptOptional').value = data.receiptOptional || '';
+}
+
+function handleAdminFormSubmit(e){
+  e.preventDefault();
+  const countrySelect = document.getElementById('adminCountrySelect');
+  const opt = countrySelect.options[countrySelect.selectedIndex];
+  const countryCode = opt.value || '';
+  const countryFlag = opt.getAttribute('data-flag') || '';
+  const countryName = opt.getAttribute('data-country') || '';
+  const now = new Date();
+  const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const hours = String(now.getHours()).padStart(2,'0');
+  const mins = String(now.getMinutes()).padStart(2,'0');
+  const currentFormattedTime = `${monthNames[now.getMonth()]} ${now.getDate()} ${hours}:${mins}`;
+
+  const newRecord = {
+    trackingNumber: document.getElementById('adminTrackingNumber').value.trim().toUpperCase(),
+    modeOfPayment: document.getElementById('adminModeOfPayment').value.trim(),
+    accountName: document.getElementById('adminAccountName').value.trim(),
+    countryCode, countryFlag, countryName,
+    accountNumber: document.getElementById('adminAccountNumber').value.trim(),
+    amount: parseFloat(document.getElementById('adminAmount').value || 0).toFixed(2),
+    currency: document.getElementById('adminCurrency').value.trim().toUpperCase(),
+    receiptOptional: document.getElementById('adminReceiptOptional').value.trim(),
+    timestamp: currentFormattedTime,
+    isAccepted:false, isDeclined:false,
+    createdAt: new Date().toISOString()
+  };
+
+  currentReceipt = newRecord;
+  localStorage.setItem(STORAGE_KEY_CURRENT, JSON.stringify(currentReceipt));
+  saveToHistory(currentReceipt);
+  updateGeneratedLinkDisplay(currentReceipt);
+  renderAdminHistory();
+
+  const clientLink = buildClientPaymentUrl(currentReceipt);
+  navigator.clipboard.writeText(clientLink).then(()=>{
+    showToast('✓ Payment Registered & Client Link Copied!');
+  }).catch(()=>{
+    showToast('✓ Payment Registered! Client Link Ready.');
+  });
+}
+
+function buildClientPaymentUrl(receipt){
+  const targetUrl = new URL('index.html', window.location.href);
+  const payload = {
+    t:receipt.trackingNumber, n:receipt.accountName, a:receipt.amount, c:receipt.currency,
+    cc:receipt.countryCode, cf:receipt.countryFlag, cn:receipt.countryName,
+    acc:receipt.accountNumber, m:receipt.modeOfPayment, r:receipt.receiptOptional, ts:receipt.timestamp
+  };
+  const encodedPayload = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(payload)))));
+  targetUrl.search = `tracking=${encodeURIComponent(receipt.trackingNumber)}&p=${encodedPayload}`;
+  targetUrl.hash = '';
+  return targetUrl.toString();
+}
+
+function updateGeneratedLinkDisplay(data){
+  const linkInput = document.getElementById('admin-share-link-input');
+  const sumRecipient = document.getElementById('summary-recipient');
+  const sumAmount = document.getElementById('summary-amount');
+  const sumCountry = document.getElementById('summary-country');
+  const sumTracking = document.getElementById('summary-tracking');
+  const hasData = data && (data.trackingNumber || data.accountName || data.accountNumber || data.amount);
+  const shareUrl = hasData ? buildClientPaymentUrl(data) : '';
+  if(linkInput) linkInput.value = shareUrl;
+  if(sumRecipient) sumRecipient.textContent = data.accountName || '';
+  if(sumAmount) sumAmount.textContent = data.amount ? `${(data.currency||'').toUpperCase()} ${parseFloat(data.amount).toFixed(2)}`.trim() : '';
+  if(sumCountry) sumCountry.textContent = data.countryName ? `${data.countryFlag||''} ${data.countryName} (${data.countryCode||''})`.trim() : '';
+  if(sumTracking) sumTracking.textContent = data.trackingNumber || '—';
+}
+
+function copyAdminGeneratedLink(){
+  const input = document.getElementById('admin-share-link-input');
+  if(!input || !input.value) return;
+  input.select(); input.setSelectionRange(0,99999);
+  navigator.clipboard.writeText(input.value).then(()=>{
+    const label = document.getElementById('copy-btn-label');
+    if(label){ const o = label.textContent; label.textContent='Copied!'; setTimeout(()=>label.textContent=o,2000); }
+    showToast('✓ Client payment link copied!');
+  }).catch(()=>showToast('Link copied!'));
+}
+
+function openClientPreviewInNewTab(){
+  const url = buildClientPaymentUrl(currentReceipt);
+  window.open(url,'_blank');
+}
+
+function shareViaWhatsApp(){
+  const url = buildClientPaymentUrl(currentReceipt);
+  const text = `Hello ${currentReceipt.accountName}, here is your official MTN MoMo Payment Authorization link for ${currentReceipt.currency} ${parseFloat(currentReceipt.amount||0).toFixed(2)} (Ref: ${currentReceipt.trackingNumber}):\n\n${url}\n\nPlease click the link to authorize payment on MTN MoMo.`;
+  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`,'_blank');
+}
+
+function loadSampleAdminData(){
+  currentReceipt = {...DEFAULT_SAMPLE_DATA};
+  populateAdminForm(currentReceipt);
+  updateGeneratedLinkDisplay(currentReceipt);
+  showToast('Form cleared.');
+}
+
+function renderAdminHistory(){
+  const listEl = document.getElementById('admin-history-list');
+  if(!listEl) return;
+  const history = getStoredHistory();
+  if(history.length === 0){
+    listEl.innerHTML = `<div class="history-empty">No payments registered yet. Fill the form to create your first client link.</div>`;
+    return;
+  }
+  listEl.innerHTML = history.map(item=>{
+    const itemUrl = buildClientPaymentUrl(item);
+    return `
+    <div class="history-item-row">
+      <div class="hist-info">
+        <div class="hist-name">${escapeHtml(item.accountName)} <span class="hist-code">${escapeHtml(item.trackingNumber)}</span></div>
+        <div class="hist-sub">${escapeHtml(item.countryFlag||'')} ${escapeHtml(item.countryName||'')} • ${escapeHtml(item.modeOfPayment||'')} • ${escapeHtml(item.timestamp||'')}</div>
+      </div>
+      <div class="hist-amt">${escapeHtml(item.currency)} ${parseFloat(item.amount||0).toFixed(2)}</div>
+      <div class="hist-actions">
+        <button type="button" class="btn-hist-action" title="Copy Link" onclick="copyHistoryLink('${escapeHtml(itemUrl)}')">⧉</button>
+        <button type="button" class="btn-hist-action" title="Open" onclick="window.open('${escapeHtml(itemUrl)}','_blank')">↗</button>
+        <button type="button" class="btn-hist-action delete" title="Delete" onclick="deleteHistoryItem('${escapeHtml(item.trackingNumber)}')">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function copyHistoryLink(url){
+  navigator.clipboard.writeText(url).then(()=>showToast('✓ Link copied!')).catch(()=>showToast('Link copied!'));
+}
+
+function deleteHistoryItem(trackingNumber){
+  let list = getStoredHistory();
+  list = list.filter(r=>r.trackingNumber !== trackingNumber);
+  localStorage.setItem(STORAGE_KEY_RECEIPTS, JSON.stringify(list));
+  renderAdminHistory();
+  showToast('Payment record removed');
+}
+
+function clearAdminHistory(){
+  if(confirm('Clear all registered payment history?')){
+    localStorage.removeItem(STORAGE_KEY_RECEIPTS);
+    renderAdminHistory();
+    showToast('History cleared');
+  }
+}
+
+function getStoredHistory(){
+  try{ const data = localStorage.getItem(STORAGE_KEY_RECEIPTS); return data ? JSON.parse(data) : []; }
+  catch(e){ return []; }
+}
+
+function saveToHistory(item){
+  let list = getStoredHistory();
+  list = list.filter(r=>r.trackingNumber !== item.trackingNumber);
+  list.unshift(item);
+  if(list.length > 20) list = list.slice(0,20);
+  localStorage.setItem(STORAGE_KEY_RECEIPTS, JSON.stringify(list));
+}
+
+let toastTimeout;
+function showToast(message){
+  const toast = document.getElementById('toast');
+  if(!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(()=>toast.classList.remove('show'),3200);
+}
+
+function escapeHtml(str){
+  if(!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+}
+
+document.addEventListener('DOMContentLoaded', initAdminPage);
+</script>
+</body>
+</html>
